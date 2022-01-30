@@ -8,7 +8,7 @@ const initial_state = {
 }
 
 
-const cryptoCoin = (state = initial_state, { type, payload }) => {
+const cryptoCoins = (state = initial_state, { type, payload }) => {
     switch (type) {
         case types.FETCH_CRYPTO_COINS_REQUEST:
             return { ...state, loading: true }
@@ -27,4 +27,4 @@ const cryptoCoin = (state = initial_state, { type, payload }) => {
 };
 
 
-export default cryptoCoin
+export default cryptoCoins

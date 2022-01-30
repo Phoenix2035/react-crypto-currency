@@ -8,7 +8,7 @@ import { searchCryptoCoins } from "../redux/cryptoCoins/cryptoCoins.action"
 
 
 
-const CryptoCurrencies = ({ searchInput }) => {
+const CryptoCurrencies = ({ simplified }) => {
     const dispatch = useDispatch()
     const cryptoList = useSelector(state => state?.cryptoCoins?.cryptoCoins?.coins)
     const filteredCryptoList = useSelector(state => state?.cryptoCoins?.filteredCryptoList)
@@ -38,7 +38,8 @@ const CryptoCurrencies = ({ searchInput }) => {
     const optimizeVersion = useCallback(debounce(handleChange), [])
 
     useEffect(() => {
-        dispatch(fetchCryptoCoins(100))
+        const count = simplified ? 10 : 100;
+        dispatch(fetchCryptoCoins(count))
     }, [])
 
     useEffect(() => {
@@ -48,7 +49,7 @@ const CryptoCurrencies = ({ searchInput }) => {
     return (
         <>
             {
-                !searchInput &&
+                !simplified  &&
                 <div className="search-crypto">
                     <Input placeholder="Search Crypto Currency" onChange={optimizeVersion} />
                 </div>

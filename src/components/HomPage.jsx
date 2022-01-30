@@ -57,7 +57,7 @@ const HomPage = () => {
                     </Link>
                 </Typography.Title>
             </div>
-            <CryptoCurrencies searchInput/>
+            <CryptoCurrencies simplified/>
 
             <div className="home-heading-container">
                 <Typography.Title level={2} className="home-title">
@@ -69,7 +69,7 @@ const HomPage = () => {
                     </Link>
                 </Typography.Title>
             </div>
-            <News/>
+            <News simplified />
         </>
     );
 };

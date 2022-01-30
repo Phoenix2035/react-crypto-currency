@@ -310,7 +310,7 @@ a:hover {
 }
 
 .news-card {
-    min-height: 300px !important;
+    height: 350px;
 }
 
 .news-image-container {
