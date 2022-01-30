@@ -1,26 +1,55 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Select, Row, Col, Typography, Avatar, Card } from "antd"
 import moment from "moment";
 import { fetchCryptoNews } from "../redux/cryptoNews/cryptoNews.thunk";
+import { fetchCryptoCoins } from "../redux/cryptoCoins/cryptoCoins.thunk";
 
 const { Text, Title } = Typography
 const { Option } = Select
 
 const demoImageUrl = "http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg"
 
-const News = (simplified) => {
+const News = ({ simplified }) => {
+    const [newsCategory, setNewsCategory] = useState("Cryptocurrency")
     const dispatch = useDispatch()
     const cryptoNews = useSelector(state => state?.cryptoNews?.cryptoNews?.value)
+    const cryptoList = useSelector(state => state?.cryptoCoins?.cryptoCoins?.coins)
 
     useEffect(() => {
-        dispatch(fetchCryptoNews("Cryptocurrency", simplified ? 8 : 12))
-    }, [])
+        dispatch(fetchCryptoCoins(simplified ? 10 : 100))
+    }, [cryptoList])
+
+    useEffect(() => {
+        dispatch(fetchCryptoNews(newsCategory, simplified ? 6 : 12))
+    }, [newsCategory])
 
 
 
     return (
         <Row gutter={[24, 24]}>
+            {!simplified &&
+                <Col span={24}>
+                    <Select
+                        showSearch
+                        className="select-news"
+                        placeholder="Select a Crypto"
+                        onChange={val => setNewsCategory(val)}
+                        optionFilterProp="children"
+                        filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    >
+                        <Option value="Cryptocurrency">Crypto Currency</Option>
+                        {
+                            cryptoList &&
+                            cryptoList.map((item, index) =>
+                                <Option value={item.name} key={index}>
+                                    {item.name}
+                                </Option>
+                            )
+                        }
+                    </Select>
+                </Col>
+            }
             {
                 cryptoNews &&
                 cryptoNews?.map((item, index) =>
