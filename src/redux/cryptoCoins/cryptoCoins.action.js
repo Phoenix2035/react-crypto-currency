@@ -28,4 +28,3 @@ export const searchCryptoCoins = (search) => {
         payload: search
     }
 };
-

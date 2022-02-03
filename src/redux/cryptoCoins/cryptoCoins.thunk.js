@@ -1,4 +1,4 @@
-import {getCryptoCoinsRequest, getCryptoCoinsSuccess, getCryptoCoinsFailed} from "./cryptoCoins.action";
+import { getCryptoCoinsRequest, getCryptoCoinsSuccess, getCryptoCoinsFailed, getCryptoDetailsRequest, getCryptoDetailsSuccess, getCryptoDetailsFailed } from "./cryptoCoins.action";
 import { coinsApi } from "../../api";
 
 
@@ -10,4 +10,5 @@ export const fetchCryptoCoins = (count) => {
             .catch(err => dispatch(getCryptoCoinsFailed(err.message)))
     }
 }
+
 

@@ -49,7 +49,7 @@ const CryptoCurrencies = ({ simplified }) => {
     return (
         <>
             {
-                !simplified  &&
+                !simplified &&
                 <div className="search-crypto">
                     <Input placeholder="Search Crypto Currency" onChange={optimizeVersion} />
                 </div>
@@ -58,14 +58,12 @@ const CryptoCurrencies = ({ simplified }) => {
                 {
                     filteredCryptoList &&
                     filteredCryptoList.map(item =>
-                        <Col xs={24} sm={12} lg={6} className="crypto-card" key={item.id}>
-                            <Link to={`/crypto/${item.id}`}>
-                                <Card title={`${item.rank}. ${item.name}`} extra={<img className="crypto-image" src={item.iconUrl} alt={item.name} />} hoverable>
-                                    <p>Price: {millify(item.price)} $</p>
-                                    <p>Market Cap: {millify(item.marketCap)}</p>
-                                    <p>Daily Change: {millify(item.change)}%</p>
-                                </Card>
-                            </Link>
+                        <Col xs={24} sm={12} lg={6} className="crypto-card" key={item.uuid}>
+                            <Card title={`${item.rank}. ${item.name}`} extra={<img className="crypto-image" src={item.iconUrl} alt={item.name} />} hoverable>
+                                <p>Price: {millify(item.price)} $</p>
+                                <p>Market Cap: {millify(item.marketCap)}</p>
+                                <p>Daily Change: {millify(item.change)}%</p>
+                            </Card>
                         </Col>
                     )
                 }

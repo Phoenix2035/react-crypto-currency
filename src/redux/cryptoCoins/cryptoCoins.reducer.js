@@ -19,8 +19,8 @@ const cryptoCoins = (state = initial_state, { type, payload }) => {
         case types.FETCH_CRYPTO_COINS_FAILED:
             return { ...state, loading: false, error: payload }
 
-        case types.FETCH_CRYPTO_COINS_SEARCH:            
-           return { ...state, filteredCryptoList: state.cryptoCoins?.coins?.filter(item => item.name.toLowerCase().includes(payload.toLowerCase())) }
+        case types.FETCH_CRYPTO_COINS_SEARCH:
+            return { ...state, filteredCryptoList: state.cryptoCoins?.coins?.filter(item => item.name.toLowerCase().includes(payload.toLowerCase())) }
         default:
             return state;
     }
